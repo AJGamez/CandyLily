@@ -83,4 +83,9 @@ class UsuarioController extends Controller
         $usuario1->update();
         return Redirect::to('usuario');
     }
+
+    public function Cerrar_Logout() {        
+        Auth::logout();    
+        return Redirect::to('/login');
+    }
 }

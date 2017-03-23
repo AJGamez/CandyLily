@@ -98,16 +98,20 @@
 								<li><a href="">Bitácora</a></li>
                                 <li><a href="">Acerca de</a></li>
 							</ul>
-						</li>												
+						</li>	
+                        
+                        @if (Auth::guest())
+                        @else											
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 								<i class="fa fa-user"></i>&nbsp; My Account <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="">Mi cuenta</a></li>
-                                <li><a href="">Salir</a></li>
+                                <li><a href="{{url('logout')}}">Salir</a></li>
 							</ul>
 						</li>
+                        @endif
 					</ul>
 				</div>
 			</div>

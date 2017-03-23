@@ -1,66 +1,75 @@
-@extends('layouts.app')
+@extends('titulo')
+@section('centro')          
+          <!-- form action="login" method="post">
+          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" -->
+          <form role="form" method="POST" action="{{ url('/login') }}">
+          {{ csrf_field() }}
+          
+          <div class="row well">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 thumbnail">
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
+              <div class="page-header">
+                <h3>Inicio de <span class="violet">Sesión</span></h3>
+              </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+              <div class="row">
+                <div class="col-md-2"></div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
-                    </form>
+                <div class="col-md-4">
+                  <label>Correo:</label>
+                  <div class="form-group has-feedback">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon "><span class="fa fa-envelope"></span></span>
+                      <input type="text" class="form-control" id="email" name="email" placeholder="example@outlook.com">
+                      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                  </div>
                 </div>
-            </div>
+
+                <div class="col-md-4">
+                  <label>Contraseña:</label>
+                  <div class="form-group has-feedback">
+                    <div class="input-group input-group-sm">
+                    <span class="input-group-addon "><span class="fa fa-user"></span></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2"></div>
+                                   
+            </div>                  
+
+                  <div class="row">
+                    <div class="col-sm-12 wow fadeIn">
+                      <div class="footer-border"></div>
+                    </div>
+                  </div>
+
+                  <br>
+
+                  <div class="row">                                                
+                        <div class="col-md-4">
+                            <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado tu contraseña?</a>
+                        </div>
+                        
+                    <div class="col-md-2">
+                            <button class="btn btn-sm btn-info btn-block" name="cancelar" id="cancelar" type="reset">
+                                <span class="glyphicon glyphicon-remove"></span> Cancelar
+                            </button>
+                    </div>
+
+                    <div class="col-md-2">
+                            <button class="btn btn-sm btn-success btn-block" name="ingresar" id="ingresar" type="submit">
+                                <span class="glyphicon glyphicon-arrow-right"></span> Ingresar
+                            </button>
+                    </div>
+                    <div class="col-md-4"> </div>
+                  </div>
+
+          </div>
         </div>
-    </div>
-</div>
+        </form>          
 @endsection
