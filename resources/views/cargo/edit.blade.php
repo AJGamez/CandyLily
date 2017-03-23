@@ -182,10 +182,10 @@
                  	<div class="col-md-10 thumbnail">
 
               	<div class="page-header">
-              		<h3>Nuevo <span class="violet">Cargo</span></h3>
+              		<h3>Editar Cargo: <span class="violet">{{$cargo->nombre}}</span></h3>
   				          </div>
-                    {!!Form::open(array('url'=>'cargo', 'method'=>'POST', 'autocomplete'=>'off'))!!}
-                    {{Form::token()}}
+        {!!Form::model($cargo,['method'=>'PATCH','route'=>['cargo.update', $cargo->idcargo]])!!}
+        {{Form::token()}}
 
                   <div class="row">
                     <div class="col-md-4"></div>
@@ -194,7 +194,7 @@
                 				<label>Nombre:</label>
                 				<div class="input-group input-group-sm">
                 					<span class="input-group-addon "><span class="fa fa-user"></span></span>
-                    				<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" onkeyup="this.value=this.value.toUpperCase();">
+                    				<input type="text" class="form-control" id="nombre" value="{{$cargo->nombre}}" name="nombre" placeholder="Nombre" onkeyup="this.value=this.value.toUpperCase();">
                     				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     			</div>
                     		</div>
@@ -203,7 +203,8 @@
                     </div>
 
                     <div class="page-header">
-                      <h3><span class="violet">Administracion de Permisos</span></h3>
+                      <input type="hidden" name="modificar" value="1">
+                      <h3><span class="violet">Administración de Permisos</span></h3>
                         </div>
                     <div class="row">
                         <div class="col-md-2 "></div>
@@ -222,18 +223,49 @@
                    				</thead>
                					<tr>
                  						<td>Expediente</td>
-                 						<td align="center"><div class="checkbox checkbox-primary"><input id="verpaciente" name='verpaciente' type="checkbox" checked> <label for="verpaciente"></label></div></td>
-                            <td align="center"><div class="checkbox checkbox-primary"><input id="modpaciente" name="modpaciente" type="checkbox" checked> <label for="modpaciente"></label></div></td>
+                            <?php if($cargo->verpaciente == false){ ?>
+                 						  <td align="center"><div class="checkbox checkbox-primary"><input id="verpaciente"  name='verpaciente' type="checkbox" > <label for="verpaciente"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="verpaciente"  name='verpaciente' type="checkbox" checked> <label for="verpaciente"></label></div></td>
+                            <?php } ?>
+
+                            <?php if($cargo->modpaciente == false){ ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modpaciente" name="modpaciente" type="checkbox"> <label for="modpaciente"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modpaciente" name="modpaciente" type="checkbox" checked> <label for="modpaciente"></label></div></td>
+                            <?php } ?>
+
                  				</tr>
                         <tr>
                  						<td>Consultas</td>
-                 						<td align="center"><div class="checkbox checkbox-primary"><input id="verconsulta" name="verconsulta" type="checkbox" checked> <label for="verconsulta"></label></div></td>
-                            <td align="center"><div class="checkbox checkbox-primary"><input id="modconsulta" name="modconsulta" type="checkbox" checked> <label for="modconsulta"></label></div></td>
+                            <?php if($cargo->verconsulta == false) { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="verconsulta"  name="verconsulta" type="checkbox" > <label for="verconsulta"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="verconsulta"  name="verconsulta" type="checkbox" checked> <label for="verconsulta"></label></div></td>
+                            <?php } ?>
+                            <?php if($cargo->modconsulta == false) { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modconsulta"  name="modconsulta" type="checkbox" > <label for="modconsulta"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modconsulta"  name="modconsulta" type="checkbox" checked> <label for="modconsulta"></label></div></td>
+                            <?php }?>
+
+
                  				</tr>
                         <tr>
-                 						<td align="center">Citas</td>
-                 						<td align="center"><div class="checkbox checkbox-primary"><input id="vercitas" name="vercitas" type="checkbox" checked> <label for="vercitas"></label></div></td>
-                            <td align="center"><div class="checkbox checkbox-primary"><input id="modcitas" name="modcitas" type="checkbox" checked> <label for="modcitas"></label></div></td>
+                          <td align="center">Citas</td>
+
+                          <?php if($cargo->vercitas == false){ ?>
+                            <td align="center"><div class="checkbox checkbox-primary"><input id="vercitas" name="vercitas" type="checkbox" > <label for="vercitas"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="vercitas" name="vercitas" type="checkbox" checked> <label for="vercitas"></label></div></td>
+                            <?php } ?>
+
+                            <?php if($cargo->modcitas == false){ ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modcitas" name="modcitas" type="checkbox" > <label for="modcitas"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modcitas" name="modcitas" type="checkbox" checked> <label for="modcitas"></label></div></td>
+                            <?php } ?>
+
                  				</tr>
                    			</table>
 
@@ -243,7 +275,7 @@
 
                       <div class="col-md-3 thumbnail">
                         <div class="page-header">
-                      		<h5><span class="violet">Administracion</span></h5>
+                      		<h5><span class="violet">Administración</span></h5>
           				       </div>
                          <table class="table table-striped table-bordered table-condensed table-hover">
                    				<thead class="violet">
@@ -255,18 +287,48 @@
                    				</thead>
                					<tr>
                  						<td>Unidades de Salud</td>
-                 						<td align="center"><div class="checkbox checkbox-primary"><input id="verunidad" name="verunidad" type="checkbox" checked> <label for="verunidad"></label></div></td>
-                            <td align="center"><div class="checkbox checkbox-primary"><input id="modunidad" name="modunidad" type="checkbox" checked> <label for="modunida"></label></div></td>
+                            <?php if($cargo->verunidad == false) { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="verunidad" name="verunidad" type="checkbox" > <label for="verunidad"></label></div></td>
+                              <?php } else { ?>
+                                <td align="center"><div class="checkbox checkbox-primary"><input id="verunidad" name="verunidad" type="checkbox" checked> <label for="verunidad"></label></div></td>
+                              <?php } ?>
+                              <?php if($cargo->modunidad == false) { ?>
+                                <td align="center"><div class="checkbox checkbox-primary"><input id="modunidad" name="modunidad" type="checkbox" > <label for="modunidad"></label></div></td>
+                              <?php } else { ?>
+                                <td align="center"><div class="checkbox checkbox-primary"><input id="modunidad" name="modunidad" type="checkbox" checked> <label for="modunidad"></label></div></td>
+                              <?php } ?>
+
+
                  				</tr>
                         <tr>
                  						<td>Tratamientos</td>
-                 						<td align="center"><div class="checkbox checkbox-primary"><input id="vertratamiento" name="vertratamiento" type="checkbox" checked> <label for="vertratamiento"></label></div></td>
-                            <td align="center"><div class="checkbox checkbox-primary"><input id="modtratamiento" name="modtratamiento" type="checkbox" checked> <label for="modtratamiento"></label></div></td>
+                            <?php if($cargo->vertratamiento == false){ ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="vertratamiento" name="vertratamiento" type="checkbox" > <label for="vertratamiento"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="vertratamiento" name="vertratamiento" type="checkbox" checked> <label for="vertratamiento"></label></div></td>
+                            <?php } ?>
+                            <?php if($cargo->modtratamiento == false){ ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modtratamiento" name="modtratamiento" type="checkbox" > <label for="modtratamiento"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modtratamiento" name="modtratamiento" type="checkbox" checked> <label for="modtratamiento"></label></div></td>
+                            <?php } ?>
+
+
                  				</tr>
                         <tr>
-                 						<td align="center">Diagnosticos</td>
-                 						<td align="center"><div class="checkbox checkbox-primary"><input id="verdiagnostico" name="verdiagnostico" type="checkbox" checked> <label for="verdiagnostico"></label></div></td>
-                            <td align="center"><div class="checkbox checkbox-primary"><input id="moddiagnostico"  name="moddiagnostico" type="checkbox" checked> <label for="moddiagnostico"></label></div></td>
+                 						<td align="center">Diagnósticos</td>
+                            <?php if($cargo->verdiagnostico == false){ ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="verdiagnostico" name="verdiagnostico" type="checkbox"> <label for="verdiagnostico"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="verdiagnostico" name="verdiagnostico" type="checkbox" checked> <label for="verdiagnostico"></label></div></td>
+                            <?php } ?>
+                            <?php if($cargo->moddiagnostico == false){ ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="moddiagnostico"  name="moddiagnostico" type="checkbox" > <label for="moddiagnostico"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="moddiagnostico"  name="moddiagnostico" type="checkbox" checked> <label for="moddiagnostico"></label></div></td>
+                            <?php } ?>
+
+
                  				</tr>
                    			</table>
 
@@ -293,13 +355,35 @@
                       				</thead>
                   					<tr>
                     						<td>Usuarios</td>
-                    						<td align="center"><div class="checkbox checkbox-primary"><input id="verusuario" name="verusuario" type="checkbox" checked> <label for="verusuario"></label></div></td>
-                               <td align="center"><div class="checkbox checkbox-primary"><input id="modusuario" name="modusuario" type="checkbox" checked> <label for="modusuario"></label></div></td>
+                                <?php if($cargo->verusuario == false){ ?>
+                                  <td align="center"><div class="checkbox checkbox-primary"><input id="verusuario" name="verusuario" type="checkbox" > <label for="verusuario"></label></div></td>
+                                <?php } else { ?>
+                                  <td align="center"><div class="checkbox checkbox-primary"><input id="verusuario" name="verusuario" type="checkbox" checked> <label for="verusuario"></label></div></td>
+                                <?php } ?>
+                                <?php if($cargo->modusuario == false){ ?>
+                                  <td align="center"><div class="checkbox checkbox-primary"><input id="modusuario"  name="modusuario" type="checkbox"> <label for="modusuario"></label></div></td>
+                            <?php } else { ?>
+                              <td align="center"><div class="checkbox checkbox-primary"><input id="modusuario"  name="modusuario" type="checkbox" checked> <label for="modusuario"></label></div></td>
+                            <?php } ?>
+
+
+
+
+
                     				</tr>
                            <tr>
                     						<td>Cargos</td>
-                    						<td align="center"><div class="checkbox checkbox-primary"><input id="vercargo" name="vercargo" type="checkbox" checked> <label for="vercargo"></label></div></td>
-                               <td align="center"><div class="checkbox checkbox-primary"><input id="modcargo" name="modcargo" type="checkbox" checked> <label for="modcargo"></label></div></td>
+                                <?php if($cargo->vercargo == false){ ?>
+                    						<td align="center"><div class="checkbox checkbox-primary"><input id="vercargo" name="vercargo" type="checkbox"> <label for="vercargo"></label></div></td>
+                                <?php }else{ ?>
+                                  <td align="center"><div class="checkbox checkbox-primary"><input id="vercargo" name="vercargo" type="checkbox" checked> <label for="vercargo"></label></div></td>
+                                  <?php } ?>
+                                  <?php if($cargo->modcargo == false){ ?>
+                                    <td align="center"><div class="checkbox checkbox-primary"><input id="modcargo" name="modcargo" type="checkbox" > <label for="modcargo"></label></div></td>
+                                  <?php } else { ?>
+                                    <td align="center"><div class="checkbox checkbox-primary"><input id="modcargo" name="modcargo" type="checkbox" checked> <label for="modcargo"></label></div></td>
+                                  <?php } ?>
+
                     				</tr>
 
                       			</table>
@@ -312,7 +396,6 @@
                         <div class="page-header">
                       		<h5><span class="violet">Seguridad</span></h5>
           				          </div>
-
                             <table class="table table-striped table-bordered table-condensed table-hover">
                       				<thead class="violet">
                       					<td>Submodulo</td>
@@ -323,14 +406,33 @@
                       				</thead>
                   					<tr>
                     						<td>Respaldo</td>
-                    						<td align="center"><div class="checkbox checkbox-primary"><input id="verespaldo" name="verespaldo" type="checkbox" checked> <label for="verespaldo"></label></div></td>
-                               <td align="center"><div class="checkbox checkbox-primary"><input id="modrespaldo" name="modrespaldo" type="checkbox" checked> <label for="modrespaldo"></label></div></td>
+                                <?php if($cargo->verespaldo == false){ ?>
+                                  <td align="center"><div class="checkbox checkbox-primary"><input id="verespaldo" name="verespaldo" type="checkbox" > <label for="verespaldo"></label></div></td>
+                                  <?php } else { ?>
+                                    <td align="center"><div class="checkbox checkbox-primary"><input id="verespaldo" name="verespaldo" type="checkbox" checked> <label for="verespaldo"></label></div></td>
+                                  <?php } ?>
+                                  <?php if($cargo->modrespaldo == false){ ?>
+                                    <td align="center"><div class="checkbox checkbox-primary"><input id="modrespaldo" name="modrespaldo" type="checkbox" > <label for="modrespaldo"></label></div></td>
+                              <?php } else { ?>
+                                <td align="center"><div class="checkbox checkbox-primary"><input id="modrespaldo" name="modrespaldo" type="checkbox" checked> <label for="modrespaldo"></label></div></td>
+                              <?php } ?>
+
+
                     				</tr>
                            <tr>
-                    						<
-                               <tr>
+
                         						<td>Bitacora</td>
-                    						<td align="center"><div class="checkbox checkbox-primary"><input id="verbitacora" name="verbitacora" type="checkbox" checked> <label for="verbitacora"></label></div></td>
+                                    <?php if($cargo->verbitacora == false){ ?>
+                                      <td align="center"><div class="checkbox checkbox-primary"><input id="verbitacora" name="verbitacora" type="checkbox" > <label for="verbitacora"></label></div></td>
+                                    <?php } else { ?>
+                                      <td align="center"><div class="checkbox checkbox-primary"><input id="verbitacora" name="verbitacora" type="checkbox" checked> <label for="verbitacora"></label></div></td>
+                                    <?php } ?>
+                                    <?php if($cargo->verbitacora == false){ ?>
+                                      <td align="center"><div class="checkbox checkbox-primary"><input id="verbitacora" name="verbitacora" type="checkbox" > <label for="verbitacora"></label></div></td>
+                                    <?php } else { ?>
+                                      <td align="center"><div class="checkbox checkbox-primary"><input id="verbitacora" name="verbitacora" type="checkbox" checked> <label for="verbitacora"></label></div></td>
+                                    <?php } ?>
+
                                </tr>
 
                       			</table>

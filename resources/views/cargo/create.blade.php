@@ -186,6 +186,15 @@
   				          </div>
                     {!!Form::open(array('url'=>'cargo', 'method'=>'POST', 'autocomplete'=>'off'))!!}
                     {{Form::token()}}
+                    @if (count($errors)>0)
+                        <div class="alert alert-danger" align="left">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                   <div class="row">
                     <div class="col-md-4"></div>
@@ -203,7 +212,7 @@
                     </div>
 
                     <div class="page-header">
-                      <h3><span class="violet">Administracion de Permisos</span></h3>
+                      <h3><span class="violet">Administración de Permisos</span></h3>
                         </div>
                     <div class="row">
                         <div class="col-md-2 "></div>
@@ -243,7 +252,7 @@
 
                       <div class="col-md-3 thumbnail">
                         <div class="page-header">
-                      		<h5><span class="violet">Administracion</span></h5>
+                      		<h5><span class="violet">Administración</span></h5>
           				       </div>
                          <table class="table table-striped table-bordered table-condensed table-hover">
                    				<thead class="violet">
@@ -264,7 +273,7 @@
                             <td align="center"><div class="checkbox checkbox-primary"><input id="modtratamiento" name="modtratamiento" type="checkbox" checked> <label for="modtratamiento"></label></div></td>
                  				</tr>
                         <tr>
-                 						<td align="center">Diagnosticos</td>
+                 						<td align="center">Diagnósticos</td>
                  						<td align="center"><div class="checkbox checkbox-primary"><input id="verdiagnostico" name="verdiagnostico" type="checkbox" checked> <label for="verdiagnostico"></label></div></td>
                             <td align="center"><div class="checkbox checkbox-primary"><input id="moddiagnostico"  name="moddiagnostico" type="checkbox" checked> <label for="moddiagnostico"></label></div></td>
                  				</tr>
@@ -311,15 +320,12 @@
                       <div class="col-md-3 thumbnail">
                         <div class="page-header">
                       		<h5><span class="violet">Seguridad</span></h5>
-          				          </div>
-
+                        </div>
                             <table class="table table-striped table-bordered table-condensed table-hover">
                       				<thead class="violet">
                       					<td>Submodulo</td>
-
                                  <td align="center"><div> <a href=""> <span title="Ver submodulo"><span class="glyphicon glyphicon-eye-open"></span></span> </a> </div></td>
                       						<td align="center"><div> <a href=""> <span title="Modificar Submodulo"><span class="glyphicon glyphicon-cog"></span></span> </a> </div></td>
-
                       				</thead>
                   					<tr>
                     						<td>Respaldo</td>
@@ -327,10 +333,10 @@
                                <td align="center"><div class="checkbox checkbox-primary"><input id="modrespaldo" name="modrespaldo" type="checkbox" checked> <label for="modrespaldo"></label></div></td>
                     				</tr>
                            <tr>
-                    						<
                                <tr>
                         						<td>Bitacora</td>
                     						<td align="center"><div class="checkbox checkbox-primary"><input id="verbitacora" name="verbitacora" type="checkbox" checked> <label for="verbitacora"></label></div></td>
+                                <td align="center"><div class="checkbox checkbox-primary"><input id="verbitacora" name="verbitacora" type="checkbox" checked> <label for="verbitacora"></label></div></td>
                                </tr>
 
                       			</table>
@@ -359,12 +365,11 @@
                             </a>
                 		</div>
                     <div class="col-md-2">
-                			<a href="index">
+                			<a href="{{url('cargo')}}">
+                        <button class="btn btn-sm btn-info btn-block" name="cancelar" id="cancelar" type="reset">
+                            <span class="glyphicon glyphicon-remove"></span>Cancelar
+                        </button></a>
 
-                            <button class="btn btn-sm btn-success btn-block"  type="reset" >
-                                <span class="glyphicon glyphicon-edit"></span> Cancelar
-                            </button>
-                            </a>
                 		</div>
                 		<div class="col-md-4"></div>
                 	</div>
