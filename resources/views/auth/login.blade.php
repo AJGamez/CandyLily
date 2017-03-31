@@ -1,10 +1,10 @@
 @extends('titulo')
-@section('centro')          
+@section('centro')
           <!-- form action="login" method="post">
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" -->
           <form role="form" method="POST" action="{{ url('/login') }}">
           {{ csrf_field() }}
-          
+
           <div class="row well">
             <div class="col-md-1"></div>
             <div class="col-md-10 thumbnail">
@@ -17,11 +17,11 @@
                 <div class="col-md-2"></div>
 
                 <div class="col-md-4">
-                  <label>Correo:</label>
+                  <label>Usuario:</label>
                   <div class="form-group has-feedback">
                     <div class="input-group input-group-sm">
                       <span class="input-group-addon "><span class="fa fa-envelope"></span></span>
-                      <input type="text" class="form-control" id="email" name="email" placeholder="example@outlook.com">
+                      <input type="text" class="form-control" id="username" name="username" placeholder="nombre de usuario">
                       <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                   </div>
@@ -39,8 +39,8 @@
               </div>
 
               <div class="col-md-2"></div>
-                                   
-            </div>                  
+
+            </div>
 
                   <div class="row">
                     <div class="col-sm-12 wow fadeIn">
@@ -50,11 +50,11 @@
 
                   <br>
 
-                  <div class="row">                                                
+                  <div class="row">
                         <div class="col-md-4">
                             <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado tu contraseña?</a>
                         </div>
-                        
+
                     <div class="col-md-2">
                             <button class="btn btn-sm btn-info btn-block" name="cancelar" id="cancelar" type="reset">
                                 <span class="glyphicon glyphicon-remove"></span> Cancelar
@@ -71,5 +71,5 @@
 
           </div>
         </div>
-        </form>          
+        </form>
 @endsection
