@@ -15,24 +15,24 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     public function __construct()
-    {        
+    {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-    public function postLogin(Request $request) {        
+    public function postLogin(Request $request) {
         if(Auth::attempt([
-            'email'=>$request->email,
+            'username'=>$request->username,
             'password'=>$request->password,
             'estado'=>1
             ], $request->has('remember'))) {
-                return redirect()->intended($this->redirectPath());                
+                return redirect()->intended($this->redirectPath());
         } else {
             $rules=[
-            'email'=>'required',
+            'username'=>'required',
             'password'=>'required'];
-            
+
             $messages=[
-            'email.required'=>'El campo e-mail es requerido',
+            'username.required'=>'El campo e-mail es requerido',
             'password'=>'El campo contraseña es requerido'];
             $validator=Validator::make($request->all(), $rules,$messages);
             return redirect('login')->with('message','Credenciales no validas');

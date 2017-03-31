@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use CandyLily\Http\Requests;
 use CandyLily\Usuarioinac;
 use Illuminate\Support\Facades\Redirect;
-use CandyLily\Http\Requests\UsuarioFormRequest;
+use CandyLily\Http\Requests\UsuarioinacFormRequest;
+use CandyLily\Usuario;
 use DB;
+use Session;
 
 class UsuarioinacController extends Controller
 {
@@ -26,12 +28,12 @@ class UsuarioinacController extends Controller
             ->paginate(5);
 
             return view('usuarioinac.index',["usuarios"=>$usuario1,"searchText"=>$query]);
-    	}        
+    	}
     }
 
     public function create() {
         return view("usuarioinac.create");
-    }    
+    }
 
     public function store(UsuarioFormRequest $request) {
         $usuario1=new Usuarioinac;
@@ -45,7 +47,7 @@ class UsuarioinacController extends Controller
         $usuario1->sexo=$request->get('sexo');
         $usuario1->username=$request->get('username');
         $usuario1->password=$request->get('password');
-        $usuario1->estado='1';        
+        $usuario1->estado='1';
         $usuario1->idcargo=$request->get('cargo');
         $usuario1->remember_token=str_random(100);
 
@@ -59,8 +61,33 @@ class UsuarioinacController extends Controller
     }
 
     public function edit($id) {
-        return view("usuario.edit", ["usuario"=>Usuario::findOrFail($id)]);
-    } 
+        return view("usuarioinac.edit", ["usuario"=>Usuarioinac::findOrFail($id)]);
+    }
+
+    public function update(UsuarioinacFormRequest $request,$id) {
+
+      $usuario1=Usuario::findOrFail($id);
+
+
+            if($request->get('password') == $request->get('password_confirmation')){
+
+              $usuario1->username = $request->get('username');
+              $usuario1->password = bcrypt($request->get('password'));
+              $usuario1->update();
+
+              return Redirect::to('usuario');
+              Session::flash('mensaje','¡Actualizacion exitosa!');
+            }
+
+
+
+
+    }
+    //Dr0y3Y
+    public function showAuth($id) {
+        return view("usuarioinac.showAuth", ["usuario"=>Usuario::findOrFail($id)]);
+    }
+
 
     public function destroy($id) {
         $usuario1=Usuarioinac::findOrFail($id);

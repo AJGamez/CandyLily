@@ -155,6 +155,7 @@ return [
         CandyLily\Providers\AuthServiceProvider::class,
         CandyLily\Providers\EventServiceProvider::class,
         CandyLily\Providers\RouteServiceProvider::class,
+        CandyLily\Providers\ValidatorServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
 

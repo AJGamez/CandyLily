@@ -2,18 +2,18 @@
 <html lang="es">
 
     <head>
-        
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="{{url('ico/diente.ico')}}">
-        <title>CandyLily</title>        
-        
+        <title>CandyLily</title>
+
         <!-- CSS -->
         <!--link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster"-->
-        
+
         <link rel="stylesheet" href="{{url('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url('font-awesome/css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{url('css/animate.css')}}">
@@ -40,7 +40,7 @@
     </head>
 
     <body>
-        
+
         <!-- Top menu -->
 		<nav class="navbar" role="navigation">
 			<div class="container">
@@ -53,7 +53,7 @@
 					</button>
 					<a class="navbar-nav" href=""><img src="{{url('imagenes/diente.png')}}" width="85" height="85"></a>
 				</div>
-                
+
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="top-navbar-1">
 					<ul class="nav navbar-nav navbar-right">
@@ -86,7 +86,7 @@
 							</a>
 							<ul class="dropdown-menu dropdown-menu-left" role="menu">
 								<li><a href="{{url('usuario')}}">Usuarios</a></li>
-								<li><a href="">Cargos</a></li>                                
+								<li><a href="{{url('cargo')}}">Cargos</a></li>
 							</ul>
 						</li>
                         <li class="dropdown">
@@ -98,17 +98,18 @@
 								<li><a href="">Bitácora</a></li>
                                 <li><a href="">Acerca de</a></li>
 							</ul>
-						</li>	
-                        
+						</li>
+
                         @if (Auth::guest())
-                        @else											
+                        @else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 								<i class="fa fa-user"></i>&nbsp; My Account <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="">Mi cuenta</a></li>
-                                <li><a href="{{url('logout')}}">Salir</a></li>
+                <?php $id = Auth::id(); ?>
+								<li><a href={!! asset("/showAuth/".$id) !!}>Mi cuenta</a></li>
+                <li><a href="{{url('logout')}}">Salir</a></li>
 							</ul>
 						</li>
                         @endif
@@ -116,10 +117,10 @@
 				</div>
 			</div>
 		</nav>
-         
+
 		<div class="contenido">
       		@yield('contenido')
-    	</div>    	
+    	</div>
 
         <footer>
             <div class="container">
@@ -128,13 +129,13 @@
                         <p>UES FMP 2017 - CandyLily </p>
                     </div>
                     <div class="col-sm-5 footer-social wow fadeIn">
-                        <a href="#"><i class="fa fa-facebook"></i></a>                        
+                        <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-        </footer>      
+        </footer>
 
         <!-- Javascript -->
         <script src="{{url('js/validator.js')}}"></script>
@@ -149,9 +150,9 @@
         <script src="{{url('flexslider/jquery.flexslider-min.js')}}"></script>
         <script src="{{url('js/jflickrfeed.min.js')}}"></script>
         <script src="{{url('js/masonry.pkgd.min.js')}}"></script>
-        
+
         <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-        
+
         <script src="{{url('js/jquery.ui.map.min.js')}}"></script>
         <script src="{{url('js/scripts.js')}}"></script>
 
