@@ -2,9 +2,9 @@
 @section('contenido')
         <!-- Slider -->
 
-        @foreach($cargos as $car) <?php // modal paar desactivar el cargo?>
-          <div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="delete-{{$car->idcargo}}">
-            {!!Form::model($car,['method'=>'PATCH','route'=>['cargo.update', $car->idcargo]])!!}
+        @foreach($unidades as $uni) <?php // modal paar desactivar la unidad?>
+          <div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="delete-{{$uni->idunidad}}">
+            {!!Form::model($uni,['method'=>'PATCH','route'=>['unidad.update', $uni->idunidad]])!!}
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -13,17 +13,17 @@
                             <input type="hidden" name="modificar" value="2">
                         </button>
 
-                        <h3>Desactivar: <span class="violet">{{ $car->nombre }}</span></h3>
+                        <h3>Desactivar: <span class="violet">{{ $uni->nombre }}</span></h3>
                     </div>
 
                     <div class="modal-body">
-                        <h5>¿Seguro que quiere dar de baja al Cargo?</h5>
+                        <h5>¿Seguro que quiere dar de baja a la unidad?</h5>
                     </div>
 
                     <div class="modal-footer">
                         <div class="row">
                             <div class="col-md-8" align="left">
-                                <h6>* Se cambiará el estado del Cargo a inactivo</h6>
+                                <h6>* Se cambiará el estado de la unidad a inactivo</h6>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-sm btn-success btn-block" data-dismiss="modal">
@@ -42,9 +42,9 @@
         </div>
         @endforeach
 
-        @foreach($cargos as $car2) <?php //modal para activar cargo?>
-        <div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="delete2-{{$car2->idcargo}}">
-            {!!Form::model($car2,['method'=>'PATCH','route'=>['cargo.update', $car2->idcargo]])!!}
+        @foreach($unidades as $uni2) <?php //modal para activar unidad de salud?>
+        <div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="delete2-{{$uni2->idunidad}}">
+            {!!Form::model($uni2,['method'=>'PATCH','route'=>['unidad.update', $uni2->idunidad]])!!}
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -52,17 +52,17 @@
                             <span aria-hidden="true"></span>
                         </button>
 
-                        <h3>Activación de <span class="violet">{{ $car2->nombre }}</span></h3>
+                        <h3>Activación de <span class="violet">{{ $uni2->nombre }}</span></h3>
                     </div>
                     <input type="hidden" name="modificar" value="3">
                     <div class="modal-body">
-                        <h5>¿Seguro que quiere dar de alta al cargo?</h5>
+                        <h5>¿Seguro que quiere dar de alta la unidad?</h5>
                     </div>
 
                     <div class="modal-footer">
                         <div class="row">
                             <div class="col-md-8" align="left">
-                                <h6>* Se cambiará el estado del cargo a activo</h6>
+                                <h6>* Se cambiará el estado de la unidad a activo</h6>
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-sm btn-success btn-block" data-dismiss="modal">
@@ -82,71 +82,70 @@
         @endforeach
 
 
+
+
         <div class="well">
             <div class="container">
 
             	<div class="row">
             		<div class="col-md-12 thumbnail">
+
             			<div class="page-header">
-            				<h3>Administración de <span class="violet">Cargos</span></h3>
+                            <h3>Administración de <span class="violet">Unidades de Salud</span></h3>
 						</div>
 
 						<div class="row">
                 		<div class="col-md-2">
-                			<a href="cargo/create">
+                			<a href="{{url('unidad/create')}}">
                             <button class="btn btn-xs btn-success btn-block" name="nuevo" id="nuevo" type="button">
-                                <span class="glyphicon glyphicon-plus"></span> Nuevo Cargo
+                                <span class="glyphicon glyphicon-plus"></span> Nueva Unidad
                             </button>
                             </a>
                 		</div>
                         <div class="col-md-7"></div>
                 			<div class="col-md-3">
-                                @include('cargo.buscar')
+                                @include('unidad.buscar')
                             </div>
                 		</div>
 
                 		<br>
-
             			<table class="table table-striped table-bordered table-condensed table-hover">
             				<thead class="violet">
-            					<td>#</td>
-            					<td>CARGO</td>
+            					<td>CÓDIGO</td>
+            					<td>UNIDAD DE SALUD</td>
             					<td colspan="2">OPCIONES</td>
             				</thead>
-                    <?php $corre=1; ?>
-            				@foreach ($cargos as $car)
 
+            				@foreach ($unidades as $uni)
         					<tr>
-                      <td>{{ $corre}}</td>
-          						<td>{{ $car->nombre}}</td>
-          						<td align="center"><div> <a href={!! asset('/cargo/'.$car->idcargo.'/edit') !!}> <span title="Modificar Cargo"><span class="glyphicon glyphicon-cog"></span></span> </a> </div></td>
-                      @if($car->estado == 1)
-                      <td align="center"><div> <a href="" data-target="#delete-{{$car->idcargo}}" data-toggle="modal"> <span title="Dar de baja"><span class="glyphicon glyphicon-arrow-down"></span></span> </a> </div></td>
+          						<td>{{ $uni->codigo}}</td>
+          						<td>{{ $uni->nombre}}</td>
+
+          						<td align="center"><div> <a href="{{URL::action('UnidadController@edit', $uni->idunidad)}}"> <span title="Modificar diagnóstico"><span class="glyphicon glyphicon-cog"></span></span> </a> </div></td>
+                      @if($uni->estado == 1)
+                      <td align="center"><div> <a href="" data-target="#delete-{{$uni->idunidad}}" data-toggle="modal"> <span title="Dar de baja"><span class="glyphicon glyphicon-arrow-down"></span></span> </a> </div></td>
 
                       @endif
-                      @if($car->estado == 0)
-                      <td align="center"><div> <a href="" data-target="#delete2-{{$car->idcargo}}" data-toggle="modal"> <span title="Dar de alta"><span class="glyphicon glyphicon-arrow-up"></span></span> </a> </div></td>
+                      @if($uni->estado == 0)
+                      <td align="center"><div> <a href="" data-target="#delete2-{{$uni->idunidad}}" data-toggle="modal"> <span title="Dar de alta"><span class="glyphicon glyphicon-arrow-up"></span></span> </a> </div></td>
                       @endif
 
-                  </tr>
-
-
-                  <?php $corre=$corre+1;?>
+                    </tr>
                     		@endforeach
             			</table>
 
-                  <div class="row">
-                      <div class="col-md-4 container" align="left">
-                          <ol class="breadcrumb">
-                            <li><a href="{{url('cargo')}}"><span class="violet">Cargos Activos</span></a></li>
-                            <li><a href="{{url('cargobaja')}}"><span class="violet">Cargos Inactivos</span></a></li>
-                          </ol>
-                      </div>
-                      <div class="col-md-8" align="right">
-                          {{$cargos->render()}}
-                      </div>
-                  </div>
 
+                        <div class="row">
+                            <div class="col-md-4 container" align="left">
+                                <ol class="breadcrumb">
+                                  <li><a href="{{url('unidad')}}"><span class="violet">Unidades Activas</span></a></li>
+                                  <li><a href="{{url('unidadbaja')}}"><span class="violet">Unidades Inactivas</span></a></li>
+                                </ol>
+                            </div>
+                            <div class="col-md-8" align="right">
+                                {{$unidades->render()}}
+                            </div>
+                        </div>
             		</div>
             	</div>
             </div>
