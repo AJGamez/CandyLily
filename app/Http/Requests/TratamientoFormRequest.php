@@ -4,7 +4,7 @@ namespace CandyLily\Http\Requests;
 
 use CandyLily\Http\Requests\Request;
 
-class UnidadFormRequest extends Request
+class TratamientoFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class UnidadFormRequest extends Request
     public function rules()
     {
         return [
-          'codigo'=>'required|max:50',
-          'nombre'=>'required|max:50|unique:unidad',
+
+            'codigo'=>'required|max:50',
+            'nombre'=>'required|max:50|unique:tratamiento',
+
         ];
     }
 }
