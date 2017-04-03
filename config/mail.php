@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'CandyLily.System@gmail.com', 'name' => 'CandyLily'],
+    'from' => ['address' => 'CandyLily.System@gmail.com', 'name' => 'Candy'],
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------

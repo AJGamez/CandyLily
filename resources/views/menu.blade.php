@@ -77,7 +77,7 @@
 							<ul class="dropdown-menu dropdown-menu-left" role="menu">
 								<li><a href="">Unidades de Salud</a></li>
 								<li><a href="">Tratamientos</a></li>
-                                <li><a href="">Diagnósticos</a></li>
+                                <li><a  href="{{url('diagnostico')}}">Diagnósticos</a></li>
 							</ul>
 						</li>
                         <li class="dropdown">
