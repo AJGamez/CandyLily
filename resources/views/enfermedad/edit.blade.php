@@ -5,14 +5,14 @@
                	<div class="col-md-10 thumbnail">
 
             	<div class="page-header">
-            		<h3>Nuevo <span class="violet">Tratamiento</span></h3>
+            		<h3>Datos de <span class="violet">Enfermedad </span></h3>
 				</div>
 
-                {!!Form::open(array('url'=>'tratamiento', 'method'=>'POST', 'autocomplete'=>'off'))!!}
+                {!!Form::model($enfermedades,['method'=>'PATCH','route'=>['enfermedad.update', $enfermedades->id]])!!}
                 {{Form::token()}}
 
                 @if (count($errors)>0)
-                    <div class="alert alert-danger" align="left">
+                    <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{$error}}</li>
@@ -21,13 +21,15 @@
                     </div>
                 @endif
 
+                <input type="hidden" name="modificar" value="1">
+
                 <div class="row">
                 		<div class="col-md-4">
                 			<div class="form-group has-feedback">
                 				<label>Código:</label>
                 				<div class="input-group input-group-sm">
                 					<span class="input-group-addon "><span class="fa fa-user"></span></span>
-                    				<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código" onKeyUp="this.value=this.value.toUpperCase();">
+                    				<input type="text" class="form-control" id="codigo" name="codigo" value="{{$enfermedades->codigo}}" onKeyUp="this.value=this.value.toUpperCase();">
                     				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     			</div>
                     		</div>
@@ -35,10 +37,10 @@
 
                     	<div class="col-md-8">
                 			<div class="form-group has-feedback">
-                				<label>Tratramiento:</label>
+                				<label>Enfermedad:</label>
                 				<div class="input-group input-group-sm">
                     				<span class="input-group-addon "><span class="fa fa-user"></span></span>
-                    				<input name="nombre" id="nombre" type="text" class="form-control" placeholder="Nombre de tratamiento" onKeyUp="this.value=this.value.toUpperCase();">
+                    				<input name="nombre" id="nombre" type="text" class="form-control" value="{{$enfermedades->nombre}}" onKeyUp="this.value=this.value.toUpperCase();">
                     				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 				</div>
            					</div>
@@ -68,8 +70,7 @@
                 		</div>
                 		<div class="col-md-4"></div>
                 	</div>
-
-                	{!!Form::close()!!}
+                    {!!Form::close()!!}
             		</div>
                     <div class="col-md-1"></div>
             	</div>

@@ -5,10 +5,10 @@
                	<div class="col-md-10 thumbnail">
 
             	<div class="page-header">
-            		<h3>Nuevo <span class="violet">Tratamiento</span></h3>
+            		<h3>Nueva <span class="violet">Enfermedad</span></h3>
 				</div>
 
-                {!!Form::open(array('url'=>'tratamiento', 'method'=>'POST', 'autocomplete'=>'off'))!!}
+                {!!Form::open(array('url'=>'enfermedad', 'method'=>'POST', 'autocomplete'=>'off'))!!}
                 {{Form::token()}}
 
                 @if (count($errors)>0)
@@ -35,10 +35,10 @@
 
                     	<div class="col-md-8">
                 			<div class="form-group has-feedback">
-                				<label>Tratramiento:</label>
+                				<label>Enfermedad:</label>
                 				<div class="input-group input-group-sm">
                     				<span class="input-group-addon "><span class="fa fa-user"></span></span>
-                    				<input name="nombre" id="nombre" type="text" class="form-control" placeholder="Nombre de tratamiento" onKeyUp="this.value=this.value.toUpperCase();">
+                    				<input name="nombre" id="nombre" type="text" class="form-control" placeholder="Nombre de enfermedad" onKeyUp="this.value=this.value.toUpperCase();">
                     				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 				</div>
            					</div>

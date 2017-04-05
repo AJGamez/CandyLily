@@ -37,7 +37,7 @@
 
                     	<div class="col-md-8">
                 			<div class="form-group has-feedback">
-                				<label>Diagnóstico:</label>
+                				<label>Unidad:</label>
                 				<div class="input-group input-group-sm">
                     				<span class="input-group-addon "><span class="fa fa-user"></span></span>
                     				<input name="nombre" id="nombre" type="text" class="form-control" value="{{$unidades->nombre}}" onKeyUp="this.value=this.value.toUpperCase();">
