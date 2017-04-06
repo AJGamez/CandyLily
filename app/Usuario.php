@@ -16,7 +16,7 @@ class Usuario extends Model
     	'name',
         'apellido',
         'dui',
-        'direccion',        
+        'direccion',
         'telefono',
         'email',
         'civil',
@@ -27,6 +27,7 @@ class Usuario extends Model
         'idcargo',
     ];
 
+
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -34,4 +35,10 @@ class Usuario extends Model
     protected $guarded =[
 
     ];
+
+    public static function buscar($id){
+      $usuario1=Usuario::findOrFail($id);
+      $cargo=Cargo::findOrFail($usuario1->idcargo);
+      return $cargo;
+  }
 }

@@ -33,4 +33,6 @@ class Cargo extends Model
       'vertratamiento',
       'verbitacora'
     ];
+
+  
 }

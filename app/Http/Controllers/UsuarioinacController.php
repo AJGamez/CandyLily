@@ -9,6 +9,7 @@ use CandyLily\Usuarioinac;
 use Illuminate\Support\Facades\Redirect;
 use CandyLily\Http\Requests\UsuarioinacFormRequest;
 use CandyLily\Usuario;
+use CandyLily\Usuarioinac;
 use DB;
 use Session;
 

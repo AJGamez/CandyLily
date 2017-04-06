@@ -9,6 +9,7 @@ use CandyLily\Usuario;
 use Illuminate\Support\Facades\Redirect;
 use CandyLily\Http\Requests\UsuarioFormRequest;
 use CandyLily\Usuarioinac;
+use CandyLily\Cargo;
 use DB;
 
 class UsuarioController extends Controller
@@ -85,9 +86,6 @@ class UsuarioController extends Controller
 
     }
 
-
-
-    }
 
     public function destroy($id) {
         $usuario1=Usuario::findOrFail($id);

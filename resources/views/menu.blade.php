@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<?php //use Auth;
+use CandyLily\Usuario;?>
 <html lang="es">
 
     <head>
@@ -60,46 +62,86 @@
                         <li class="active">
 							<a href=""><i class="fa fa-home"></i>&nbsp; Inicio</a>
 						</li>
+
+            <?php $id = Auth::id();
+            $cadena= "verpaciente";
+            $cargo= Usuario::buscar($id);
+             ?>
+
+             <?php if($cargo->verpaciente || $cargo->verconsulta || $cargo->vercitas) {?>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 								<i class="fa fa-user"></i>&nbsp; Pacientes <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-left" role="menu">
+                <?php if($cargo->verpaciente) {?>
 								<li><a href="">Expediente</a></li>
+                <?php } ?>
+                  <?php if($cargo->verconsulta) {?>
 								<li><a href="">Consulta</a></li>
-                                <li><a href="">Citas</a></li>
+                  <?php } ?>
+                  <?php if($cargo->vercitas) {?>
+                <li><a href="">Citas</a></li>
+                  <?php } ?>
 							</ul>
 						</li>
-                        <li class="dropdown">
+
+            <?php }?>
+            <?php if($cargo->vertratamiento || $cargo->verdiagnostico || $cargo->verunidad) {?>
+            <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 								<i class="fa fa-tasks"></i>&nbsp; Administrar <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-left" role="menu">
+                <?php if($cargo->verunidad) {?>
 								<li><a href="{{url('unidad')}}">Unidades de Salud</a></li>
+                <?php }?>
+                <?php if($cargo->vertratamiento) {?>
 								<li><a href="{{(url('tratamiento'))}}">Tratamientos</a></li>
+                  <?php }?>
+                <?php if($cargo->verdiagnostico) {?>
                 <li><a  href="{{url('diagnostico')}}">Diagnósticos</a></li>
+                  <?php }?>
+
                 <li><a  href="{{url('enfermedad')}}">Enfermedades Base</a></li>
+
 							</ul>
 						</li>
-                        <li class="dropdown">
+              <?php }?>
+
+              <?php if($cargo->vercargo || $cargo->verusuario) {?>
+              <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 								<i class="fa fa-group"></i>&nbsp; RRHH <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-left" role="menu">
+                  <?php if($cargo->verusuario) {?>
 								<li><a href="{{url('usuario')}}">Usuarios</a></li>
+                <?php }?>
+                  <?php if($cargo->vercargo){?>
 								<li><a href="{{url('cargo')}}">Cargos</a></li>
+                <?php }?>
 							</ul>
 						</li>
-                        <li class="dropdown">
+            <?php }?>
+
+            <?php if($cargo->verespaldo || $cargo->verbitacora) {?>
+              <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 								<i class="fa fa-lock"></i>&nbsp; Seguridad <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-left" role="menu">
+                <?php if($cargo->verespaldo) {?>
 								<li><a href="">Respaldo</a></li>
+                <?php }?>
+                <?php if($cargo->verbitacora) {?>
 								<li><a href="">Bitácora</a></li>
-                                <li><a href="">Acerca de</a></li>
+                <?php }?>
+
+                <li><a href="">Acerca de</a></li>
 							</ul>
 						</li>
+            <?php }?>
 
                         @if (Auth::guest())
                         @else
