@@ -22,16 +22,7 @@
                 @endif
 
                 <div class="row">
-                		<div class="col-md-4">
-                			<div class="form-group has-feedback">
-                				<label>Código:</label>
-                				<div class="input-group input-group-sm">
-                					<span class="input-group-addon "><span class="fa fa-user"></span></span>
-                    				<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código" onKeyUp="this.value=this.value.toUpperCase();">
-                    				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    			</div>
-                    		</div>
-                    	</div>
+                		<div class="col-md-2"></div>
 
                     	<div class="col-md-8">
                 			<div class="form-group has-feedback">
@@ -43,6 +34,7 @@
                 				</div>
            					</div>
                     	</div>
+											<div class="col-md-2"></div>
                 </div>
 
                 	<div class="row">

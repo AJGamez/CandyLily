@@ -22,7 +22,7 @@ class TratamientoController extends Controller
         $tratamientos=DB::table('tratamiento')
             ->where('nombre', 'LIKE', '%'.$query.'%')
             ->where('estado', '=', '1')
-            ->orderBy('codigo','asc')
+            ->orderBy('nombre','asc')
             ->paginate(5);
 
             return view('tratamiento.index',["tratamientos"=>$tratamientos,"searchText"=>$query]);
@@ -35,7 +35,7 @@ class TratamientoController extends Controller
 
     public function store(TratamientoFormRequest $request) {
         $tratamiento=new Tratamiento;
-        $tratamiento->codigo=$request->get('codigo');
+
         $tratamiento->nombre=$request->get('nombre');
         $tratamiento->estado='1';
 
@@ -57,7 +57,7 @@ class TratamientoController extends Controller
       $aux=$request->get('modificar');
       if($aux==1)
       {
-        $tratamiento->codigo=$request->get('codigo');
+
         $tratamiento->nombre=$request->get('nombre');
       }else if($aux==2){
           # code...
@@ -89,7 +89,7 @@ class TratamientoController extends Controller
          $tratamientos=DB::table('tratamiento')
              ->where('nombre', 'LIKE', '%'.$query.'%')
              ->where('estado', '=', '0')
-             ->orderBy('codigo','asc')
+             ->orderBy('nombre','asc')
              ->paginate(5);
 
              return view('tratamiento.index',["tratamientos"=>$tratamientos,"searchText"=>$query]);

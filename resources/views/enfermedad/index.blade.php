@@ -115,10 +115,10 @@
             					<td>EFERMEDADES</td>
             					<td colspan="2">OPCIONES</td>
             				</thead>
-
+                    <?php $corre =1; ?>
             				@foreach ($enfermedades as $enf)
         					<tr>
-          						<td>{{ $enf->codigo}}</td>
+          						<td>{{ $corre}}</td>
           						<td>{{ $enf->nombre}}</td>
 
           						<td align="center"><div> <a href="{{URL::action('EnfermedadController@edit', $enf->id)}}"> <span title="Modificar enfermedad de Salud"><span class="glyphicon glyphicon-cog"></span></span> </a> </div></td>
@@ -129,7 +129,7 @@
                       @if($enf->estado == 0)
                       <td align="center"><div> <a href="" data-target="#delete2-{{$enf->id}}" data-toggle="modal"> <span title="Dar de alta"><span class="glyphicon glyphicon-arrow-up"></span></span> </a> </div></td>
                       @endif
-
+                          <?php $corre=$corre+1;?>
                     </tr>
                     		@endforeach
             			</table>

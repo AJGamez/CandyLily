@@ -23,7 +23,7 @@ class EnfermedadController extends Controller
         $enfermedades=DB::table('enfermedad')
             ->where('nombre', 'LIKE', '%'.$query.'%')
             ->where('estado', '=', '1')
-            ->orderBy('codigo','asc')
+            ->orderBy('nombre','asc')
             ->paginate(5);
 
             return view('enfermedad.index',["enfermedades"=>$enfermedades,"searchText"=>$query]);
@@ -36,7 +36,7 @@ class EnfermedadController extends Controller
 
     public function store(UnidadFormRequest $request) {
         $enfermedad=new Enfermedad;
-        $enfermedad->codigo=$request->get('codigo');
+
         $enfermedad->nombre=$request->get('nombre');
         $enfermedad->estado='1';
 
@@ -58,7 +58,7 @@ class EnfermedadController extends Controller
       $aux=$request->get('modificar');
       if($aux==1)
       {
-        $enfermedad->codigo=$request->get('codigo');
+
         $enfermedad->nombre=$request->get('nombre');
       }else if($aux==2){
           # code...
@@ -90,7 +90,7 @@ class EnfermedadController extends Controller
          $enfermedades=DB::table('enfermedad')
              ->where('nombre', 'LIKE', '%'.$query.'%')
              ->where('estado', '=', '0')
-             ->orderBy('codigo','asc')
+             ->orderBy('nombre','asc')
              ->paginate(5);
 
              return view('enfermedad.index',["enfermedades"=>$enfermedades,"searchText"=>$query]);

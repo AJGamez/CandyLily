@@ -115,10 +115,11 @@
             					<td>TRATAMIENTO </td>
             					<td colspan="2">OPCIONES</td>
             				</thead>
+                    <?php $corre =1; ?>
 
             				@foreach ($tratamientos as $tra)
         					<tr>
-          						<td>{{ $tra->codigo}}</td>
+          						<td>{{ $corre}}</td>
           						<td>{{ $tra->nombre}}</td>
 
           						<td align="center"><div> <a href="{{URL::action('TratamientoController@edit', $tra->id)}}"> <span title="Modificar Tratamiento"><span class="glyphicon glyphicon-cog"></span></span> </a> </div></td>
@@ -129,7 +130,7 @@
                       @if($tra->estado == 0)
                       <td align="center"><div> <a href="" data-target="#delete2-{{$tra->id}}" data-toggle="modal"> <span title="Dar de alta"><span class="glyphicon glyphicon-arrow-up"></span></span> </a> </div></td>
                       @endif
-
+                          <?php $corre=$corre+1;?>
                     </tr>
                     		@endforeach
             			</table>

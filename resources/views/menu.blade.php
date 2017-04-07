@@ -152,6 +152,7 @@ use CandyLily\Usuario;?>
 							<ul class="dropdown-menu" role="menu">
                 <?php $id = Auth::id(); ?>
 								<li><a href={!! asset("/showAuth/".$id) !!}>Mi cuenta</a></li>
+                <li><a href={!! asset('/usuarioinac/'.$id.'/edit') !!}>Configuracion de Contraseña</a></li>
                 <li><a href="{{url('logout')}}">Salir</a></li>
 							</ul>
 						</li>

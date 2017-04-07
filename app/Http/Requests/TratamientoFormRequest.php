@@ -25,7 +25,7 @@ class TratamientoFormRequest extends Request
     {
         return [
 
-            'codigo'=>'required|max:50',
+            
             'nombre'=>'required|max:50|unique:tratamiento',
 
         ];

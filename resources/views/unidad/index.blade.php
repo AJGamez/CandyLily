@@ -107,18 +107,18 @@
                                 @include('unidad.buscar')
                             </div>
                 		</div>
-
+<?php $corre =1; ?>
                 		<br>
             			<table class="table table-striped table-bordered table-condensed table-hover">
             				<thead class="violet">
-            					<td>CÓDIGO</td>
+            					<td>Número</td>
             					<td>UNIDAD DE SALUD</td>
             					<td colspan="2">OPCIONES</td>
             				</thead>
 
             				@foreach ($unidades as $uni)
         					<tr>
-          						<td>{{ $uni->codigo}}</td>
+          						<td>{{ $corre}}</td>
           						<td>{{ $uni->nombre}}</td>
 
           						<td align="center"><div> <a href="{{URL::action('UnidadController@edit', $uni->idunidad)}}"> <span title="Modificar Unidad de Salud"><span class="glyphicon glyphicon-cog"></span></span> </a> </div></td>
@@ -129,6 +129,7 @@
                       @if($uni->estado == 0)
                       <td align="center"><div> <a href="" data-target="#delete2-{{$uni->idunidad}}" data-toggle="modal"> <span title="Dar de alta"><span class="glyphicon glyphicon-arrow-up"></span></span> </a> </div></td>
                       @endif
+                      <?php $corre=$corre+1;?>
 
                     </tr>
                     		@endforeach

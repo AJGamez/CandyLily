@@ -210,20 +210,15 @@
                 	<br>
 
                 	<div class="row">
-                		<div class="col-md-4"></div>
-                		<div class="col-md-2">
+                		<div class="col-md-5"></div>
 
-                            <a href={!! asset('/usuarioinac/'.$usuario->id.'/edit') !!}><button class="btn btn-sm btn-info btn-block" name="cancelar" id="cancelar" type="reset">
-                                <span class="glyphicon glyphicon-remove"></span> Modificar
-                            </button></a>
-                		</div>
 
                 		<div class="col-md-2">
                             <button class="btn btn-sm btn-success btn-block" name="guardar" id="guardar" type="button">
                                 <span class="glyphicon glyphicon-print"></span> Imprimir
                             </button>
                 		</div>
-                		<div class="col-md-4"></div>
+                		<div class="col-md-5"></div>
                 	</div>
             		</div>
                     <div class="col-md-1"></div>

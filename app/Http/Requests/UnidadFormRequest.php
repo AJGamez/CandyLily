@@ -24,7 +24,7 @@ class UnidadFormRequest extends Request
     public function rules()
     {
         return [
-          'codigo'=>'required|max:50',
+          
           'nombre'=>'required|max:50|unique:unidad',
         ];
     }

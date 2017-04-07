@@ -19,10 +19,10 @@ class UnidadController extends Controller
       if($request) {
         $query=trim($request->get('searchText'));
         $unidades=DB::table('unidad')
-            ->where('codigo', 'LIKE', '%'.$query.'%')
+
             ->where('nombre', 'LIKE', '%'.$query.'%')
             ->where('estado', '=', '1')
-            ->orderBy('codigo','asc')
+            ->orderBy('nombre','asc')
             ->paginate(5);
 
             return view('unidad.index',["unidades"=>$unidades,"searchText"=>$query]);
@@ -35,7 +35,7 @@ class UnidadController extends Controller
 
     public function store(UnidadFormRequest $request) {
         $unidad=new Unidad;
-        $unidad->codigo=$request->get('codigo');
+
         $unidad->nombre=$request->get('nombre');
         $unidad->estado='1';
 
@@ -57,7 +57,7 @@ class UnidadController extends Controller
       $aux=$request->get('modificar');
       if($aux==1)
       {
-        $unidad->codigo=$request->get('codigo');
+
         $unidad->nombre=$request->get('nombre');
       }else if($aux==2){
           # code...
@@ -89,7 +89,7 @@ class UnidadController extends Controller
          $unidades=DB::table('unidad')
              ->where('nombre', 'LIKE', '%'.$query.'%')
              ->where('estado', '=', '0')
-             ->orderBy('codigo','asc')
+             ->orderBy('nombre','asc')
              ->paginate(5);
 
              return view('unidad.index',["unidades"=>$unidades,"searchText"=>$query]);

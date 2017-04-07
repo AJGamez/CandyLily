@@ -9,7 +9,6 @@ use CandyLily\Usuarioinac;
 use Illuminate\Support\Facades\Redirect;
 use CandyLily\Http\Requests\UsuarioinacFormRequest;
 use CandyLily\Usuario;
-use CandyLily\Usuarioinac;
 use DB;
 use Session;
 
@@ -76,7 +75,7 @@ class UsuarioinacController extends Controller
               $usuario1->password = bcrypt($request->get('password'));
               $usuario1->update();
 
-              return Redirect::to('usuario');
+              return Redirect::to('logout');
               Session::flash('mensaje','¡Actualizacion exitosa!');
             }
 
