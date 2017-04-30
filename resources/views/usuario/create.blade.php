@@ -74,6 +74,17 @@ function vernum(){
                 @endif
 
                 <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback">
+                                <label>DUI:</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon "><span class="fa fa-bars"></span></span>
+                                    <input name="dui" id="dui" type="text" onKeyPress="return soloNumeros(event)" class="form-control" placeholder="DUI" onKeyUp="NDUI('dui');">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+
                 		<div class="col-md-4">
                 			<div class="form-group has-feedback">
                 				<label>Nombre:</label>
@@ -94,38 +105,20 @@ function vernum(){
                     				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 				</div>
            					</div>
-                    	</div>
+                    	</div>                        
+                </div>
 
+                <div class="row"> 
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
-                                <label>DUI:</label>
+                                <label>E-mail:</label>
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-addon "><span class="fa fa-bars"></span></span>
-                                    <input name="dui" id="dui" type="text" onKeyPress="return soloNumeros(event)" class="form-control" placeholder="DUI" onKeyUp="NDUI('dui');">
+                                    <span class="input-group-addon "><span class="fa fa-envelope"></span></span>
+                                    <input name="email" id="email" type="text" class="form-control" placeholder="E-mail">
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
                             </div>
                         </div>
-                </div>
-
-                <div class="row">
-                		<div class="col-md-4">
-                			<div class="form-group has-feedback">
-                				<label>Cargo:</label>
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-addon "><span class="glyphicon glyphicon-list"></span></span>
-                                    <select class="form-control" name="cargo" id="cargo" required>
-                                    <?php
-                                        $cargo=DB::select('select * from cargo');
-                                    ?>
-                                    @foreach ($cargo as $car)
-
-                                    <option value="{{ $car->idcargo }}">{{ $car->nombre }}</option>
-
-                                    @endforeach
-                                </select></div>
-           					</div>
-                    	</div>
 
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
@@ -136,16 +129,23 @@ function vernum(){
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
 
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
-                                <label>E-mail:</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-addon "><span class="fa fa-envelope"></span></span>
-                                    <input name="email" id="email" type="text" class="form-control" placeholder="E-mail">
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
+                                <label>Cargo:</label>
+                                    <div class="input-group input-group-sm">
+                                    <span class="input-group-addon "><span class="glyphicon glyphicon-list"></span></span>
+                                    <select class="form-control" name="cargo" id="cargo" required>
+                                    <?php
+                                        $cargo=DB::select('select * from cargo where estado=1');
+                                    ?>
+                                    @foreach ($cargo as $car)
+
+                                    <option value="{{ $car->idcargo }}">{{ $car->nombre }}</option>
+
+                                    @endforeach
+                                </select></div>
                             </div>
                         </div>
 
@@ -169,11 +169,11 @@ function vernum(){
                                         <div class="input-group input-group-sm">
                                         <span class="input-group-addon "><span class="glyphicon glyphicon-list"></span></span>
                                         <select class="form-control" name="civil" id="civil" required>
-                                        <option value="1">SOLTER@</option>
-                                        <option value="2">CASAD@</option>
-                                        <option value="3">VIUD@</option>
-                                        <option value="4">DIVORCIAD@</option>
-                                        <option value="5">ACOMPAÑAD@</option>
+                                        <option value="1">SOLTERO (A)</option>
+                                        <option value="2">CASADO (A)</option>
+                                        <option value="3">VIUDO (A)</option>
+                                        <option value="4">DIVORCIADO (A)</option>
+                                        <option value="5">ACOMPAÑADO (A)</option>
                                     </select></div>
                                 </div>
                             </div>

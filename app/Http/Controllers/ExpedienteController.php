@@ -22,7 +22,7 @@ class ExpedienteController extends Controller
     		$query=trim($request->get('searchText'));
     		$expediente1=DB::table('expediente')            
             ->where('nombre', 'LIKE', '%'.$query.'%')  
-            ->where('estado', '=', '1')
+            //->where('estado', '=', '1')
             ->orderBy('id','asc')
             ->paginate(5);
 

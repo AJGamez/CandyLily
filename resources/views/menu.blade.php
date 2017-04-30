@@ -22,7 +22,7 @@ use CandyLily\Usuario;?>
         <link rel="stylesheet" href="{{url('css/magnific-popup.css')}}">
         <link rel="stylesheet" href="{{url('flexslider/flexslider.css')}}">
         <link rel="stylesheet" href="{{url('css/form-elements.css')}}">
-        <link rel="stylesheet" href="{{url('css/style.css')}}">
+        <link rel="stylesheet" href="{{url('css/style.css')}}">    
         <link rel="stylesheet" href="{{url('css/media-queries.css')}}">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -75,10 +75,10 @@ use CandyLily\Usuario;?>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-left" role="menu">
                 <?php if($cargo->verpaciente) {?>
-								<li><a href="">Expediente</a></li>
+								<li><a href="{{url('expediente')}}">Expediente</a></li>
                 <?php } ?>
                   <?php if($cargo->verconsulta) {?>
-								<li><a href="">Consulta</a></li>
+								<li><a href="{{url('consulta')}}">Consulta</a></li>
                   <?php } ?>
                   <?php if($cargo->vercitas) {?>
                 <li><a href="">Citas</a></li>
@@ -184,7 +184,7 @@ use CandyLily\Usuario;?>
         <!-- Javascript -->
         <script src="{{url('js/validator.js')}}"></script>
 
-        <script src="{{url('js/jquery-1.11.1.min.js')}}"></script>
+        <script src="{{url('js/jquery-2.1.3.min.js')}}"></script>
         <script src="{{url('bootstrap/js/bootstrap.min.js')}}"></script>
         <script src="{{url('js/bootstrap-hover-dropdown.min.js')}}"></script>
         <script src="{{url('js/jquery.backstretch.min.js')}}"></script>
@@ -193,12 +193,7 @@ use CandyLily\Usuario;?>
         <script src="{{url('js/jquery.magnific-popup.min.js')}}"></script>
         <script src="{{url('flexslider/jquery.flexslider-min.js')}}"></script>
         <script src="{{url('js/jflickrfeed.min.js')}}"></script>
-        <script src="{{url('js/masonry.pkgd.min.js')}}"></script>
-
-        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
-        <script src="{{url('js/jquery.ui.map.min.js')}}"></script>
-        <script src="{{url('js/scripts.js')}}"></script>
+        <script src="{{url('js/masonry.pkgd.min.js')}}"></script>       
 
     </body>
 

@@ -47,7 +47,18 @@
                     </div>
                 @endif
 
-                <div class="row">                	                	
+                <div class="row"> 
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback">
+                                <label>DUI:</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon "><span class="fa fa-bars"></span></span>
+                                    <input onFocus="this.blur()" name="dui" id="dui" type="text" class="form-control" value="{{$usuario->dui}}">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>                  
+                            </div>
+                        </div>
+
                 		<div class="col-md-4">
                 			<div class="form-group has-feedback">
                 				<label>Nombre:</label>
@@ -68,35 +79,20 @@
                     				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 				</div>                				
            					</div>
-                    	</div>
-
-                        <div class="col-md-4">
-                            <div class="form-group has-feedback">
-                                <label>DUI:</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-addon "><span class="fa fa-bars"></span></span>
-                                    <input onFocus="this.blur()" name="dui" id="dui" type="text" class="form-control" value="{{$usuario->dui}}">
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>                  
-                            </div>
-                        </div>                    
+                    	</div>                                            
                 </div>
 
-                <div class="row">                	                	
-                		<div class="col-md-4">
-                			<div class="form-group has-feedback">
-                				<label>Cargo:</label>                				
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-addon "><span class="glyphicon glyphicon-briefcase"></span></span>                                    
-                                    <?php
-                                        $cargo=DB::select('select * from cargo where idcargo='.$usuario->idcargo);
-                                    ?>
-                                    @foreach ($cargo as $car) @endforeach
-
-                                    <input onFocus="this.blur()" name="cargo" id="cargo" type="text" class="form-control" value="{{$car->nombre}}">                                    
-                                </div>                                
-           					</div>
-                    	</div>
+                <div class="row">                	                	                		
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback">
+                                <label>E-mail:</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon "><span class="fa fa-envelope"></span></span>
+                                    <input onFocus="this.blur()" name="email" id="email" type="text" class="form-control" value="{{$usuario->email}}">
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>                              
+                            </div>
+                        </div>
 
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
@@ -107,16 +103,20 @@
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                        </div>
+                        </div>                        
 
                         <div class="col-md-4">
                             <div class="form-group has-feedback">
-                                <label>E-mail:</label>
-                                <div class="input-group input-group-sm">
-                                    <span class="input-group-addon "><span class="fa fa-envelope"></span></span>
-                                    <input onFocus="this.blur()" name="email" id="email" type="text" class="form-control" value="{{$usuario->email}}">
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>                              
+                                <label>Cargo:</label>                               
+                                    <div class="input-group input-group-sm">
+                                    <span class="input-group-addon "><span class="glyphicon glyphicon-briefcase"></span></span>                                    
+                                    <?php
+                                        $cargo=DB::select('select * from cargo where idcargo='.$usuario->idcargo);
+                                    ?>
+                                    @foreach ($cargo as $car) @endforeach
+
+                                    <input onFocus="this.blur()" name="cargo" id="cargo" type="text" class="form-control" value="{{$car->nombre}}">                                    
+                                </div>                                
                             </div>
                         </div>
                 		            			                  
@@ -140,15 +140,15 @@
                                     	<div class="input-group input-group-sm">
 		                                    <span class="input-group-addon "><span class="glyphicon glyphicon-link"></span></span>
 		                                    @if($usuario->civil==1)
-		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="SOLTER@">
+		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="SOLTERO (A)">
 		                                    @elseif($usuario->civil==2)
-		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="CASAD@">
+		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="CASADO (A)">
 		                                    @elseif($usuario->civil==3)
-		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="VIUD@">
+		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="VIUDO (A)">
 		                                    @elseif($usuario->civil==4)
-		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="DIVORCIAD@">
+		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="DIVORCIADO (A)">
 		                                    @elseif($usuario->civil==5)
-		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="ACOMPAÑAD@">		                                    
+		                                    <input onFocus="this.blur()" name="civil" id="civil" type="text" class="form-control" value="ACOMPAÑADO (A)">		                                    
 		                                    @endif
 		                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		                                </div>                                           
